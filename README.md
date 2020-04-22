@@ -6,6 +6,7 @@
 2. [Exploratory Data Analysis (in .ipynb format)](EDA.ipynb)
 3. [Python Script](clean_data.py)
 4. [Cleaned Submissions folder](/submission)
+5. [Zipped Submission](Gen-1_data.zip)
 
 ## Dependencies
 
