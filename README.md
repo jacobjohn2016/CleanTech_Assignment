@@ -1,5 +1,12 @@
 # CleanTech Assignment
 
+## Submission
+
+1. [Exploratory Data Analysis (in .pdf format)](EDA.pdf)
+2. [Exploratory Data Analysis (in .ipynb format)](EDA.ipynb)
+3. [Python Script](clean_data.py)
+4. [Cleaned Submissions folder](/submission)
+
 ## Dependencies
 
 * Python 3.7+
