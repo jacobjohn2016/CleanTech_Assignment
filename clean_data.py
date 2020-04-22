@@ -45,7 +45,7 @@ def change_timestamp(source_file_path, dest_file_path, ts_colnames):
     file = file[cols]
 
     # saving file in new directory
-    file.to_csv(dest_file_path, index=False, sep='\t')
+    file.to_csv(dest_file_path, index=False, sep='\t', na_rep='NULL')
 
 
 def traversal_modify(source='data', destination='submission', ts_colnames=['i32', 'm63', 'w23']):
