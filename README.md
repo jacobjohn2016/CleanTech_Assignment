@@ -26,5 +26,9 @@ python3 clean_data.py
 ### With customer parameters
 
 ```bash
+python3 clean_data.py <source> <destination> <col1> <col2> <col3>
+```
+
+```bash
 python3 clean_data.py data submission i32 m63 w23
 ```
