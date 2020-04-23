@@ -38,7 +38,7 @@ def change_timestamp(source_file_path, dest_file_path, ts_colnames):
     cols = np.array(file.columns)
     cols[file.columns.isin(ts_colnames)] = 'Timestamp'
     file.columns = cols
-
+    
     # moving timestamp to first column
     cols = list(cols)
     cols.insert(0, cols.pop(cols.index('Timestamp')))
