@@ -1,5 +1,5 @@
 # importing libraries
-
+from datetime import datetime
 import os
 import sys
 import time
@@ -44,6 +44,16 @@ def change_timestamp(source_file_path, dest_file_path, ts_colnames):
     cols.insert(0, cols.pop(cols.index('Timestamp')))
     file = file[cols]
 
+    # ensure directory exists
+    ensure_dir(os.path.join(os.path.split(dest_file_path)[0], ""))
+
+    # reading first timestamp and saving as new dir structure
+    ts = datetime.strptime(file['Timestamp'].iloc[0], '%Y-%m-%d %H:%M:%S')
+    dest_file_path_split = dest_file_path.split(os.sep)
+    dest_file_path_split[2] = ts.strftime("%Y")
+    dest_file_path_split[3] = ts.strftime("%Y-%m")
+    dest_file_path = os.path.join(*dest_file_path_split)
+
     # saving file in new directory
     file.to_csv(dest_file_path, index=False, sep='\t', na_rep='NULL')
 
@@ -67,18 +77,17 @@ def traversal_modify(source='data', destination='submission', ts_colnames=['i32'
         if not dirs:
             root_dest = root.replace(source, destination)
 
-            # ensure directory exists
-            ensure_dir(root_dest + '/')
-
             for f in files:
                 # modifying file
-                change_timestamp(source_file_path=root + "/" + f,
-                                 dest_file_path=root_dest + "/" + f,
+                change_timestamp(source_file_path=os.path.join(root, f),
+                                 dest_file_path=os.path.join(root_dest, f),
                                  ts_colnames=ts_colnames)
+
 
 if __name__ == "main":
     start = time.time()
-    traversal_modify(source = sys.argv[0], destination = sys.argv[1], ts_colnames = sys.argv[2:])
+    traversal_modify(
+        source=sys.argv[0], destination=sys.argv[1], ts_colnames=sys.argv[2:])
     end = time.time()
     print("Successfully executed in {:.2f}s".format(end - start))
 else:
